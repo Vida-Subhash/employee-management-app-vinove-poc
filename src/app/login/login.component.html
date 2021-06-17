@@ -1,0 +1,62 @@
+
+
+<div class="container m-3" *ngIf= "!hideButton">
+  <div class="d-grid gap-2 col-6 mx-auto">
+    <button class="btn btn-outline-primary m-3"  *ngIf ="!showAdminForm"  (click)="adminLogin()" type="button" >Admin Login</button>
+    <button class="btn btn-outline-warning m-3" type="button" *ngIf ="!showEmplyeeForm" (click)="employeLogin()" >Employee Login</button>
+  </div>
+</div>
+
+<!-- Employee Form -->
+<div class="container" *ngIf = "showEmplyeeForm">
+  <form>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Employee ID</label>
+      <input type="email" placeholder="Ex. V5001" class="form-control" name="email" >
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" name="email" >
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" name="password"  >
+    </div>
+
+    <button type="submit"  class="btn btn-primary">Submit</button>
+    <button type="button" class="btn btn-link" (click)="home()"  >Not Employee Back to Home!</button>
+  </form>
+</div>
+
+<!-- Admim Form -->
+
+<div  class="container" *ngIf ="showAdminForm">
+  <form>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" name="email" [(ngModel)]= "email" value="admin@gmail.com">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" name="password" [(ngModel)]="password" value="admin123" >
+    </div>
+
+    <button type="button" (click)=" login()" class="btn btn-primary">Submit</button>
+    <button type="button" class="btn btn-link" (click)="home()"  >Not Admin Back to Home!</button>
+  </form>
+</div>
+<!-- <div class="container">
+  <form>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" name="email" [(ngModel)]= "email" value="admin@gmail.com">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" name="password" [(ngModel)]="password" value="admin123" >
+    </div>
+
+    <button type="submit" (click)=" login()" class="btn btn-primary">Submit</button>
+  </form>
+</div> -->
+
