@@ -4,17 +4,25 @@
       "employeeName": "subhash Ramshetty",
       "employeeID": "V5771",
       "email": "subhash.ramshetti9768@gmail.com",
-      "department": "Service",
+      "department": "Service, HR",
       "password": "User1234",
       "id": 1
     },
     {
-      "employeeName": "gfdgf",
-      "employeeID": "grt454",
-      "email": "gfgfg",
-      "department": "gfgfdgfdg",
-      "password": "gfdgfdgfdg",
+      "employeeName": "Suresh",
+      "employeeID": "V5002",
+      "email": "suresh@gmail.com",
+      "department": "IT",
+      "password": "suresh123",
       "id": 2
+    },
+    {
+      "employeeName": "Raju Shaikh",
+      "employeeID": "V5004",
+      "email": "raju@gmail.com",
+      "department": "HR",
+      "password": "raju123",
+      "id": 3
     }
   ],
   "comments": [],

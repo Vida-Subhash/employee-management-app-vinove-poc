@@ -1,18 +1,73 @@
-<div class="container">
-  <form>
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Employee ID</label>
-      <input type="email" placeholder="Ex. V5001" class="form-control" name="email" >
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control" name="email" >
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" name="password"  >
+
+
+<div class="container p-4 d-flex justify-content-center">
+  <div class="card p-2 rounded" style="width: 25rem;">
+    <span class="fw-bold">ID: {{showData.employeeID}} </span>
+    <span class="fw-bold">Emspanloyee Name : {{showData.employeeName}} </span>
+    <span class="fw-bold">Email : {{showData.email}} </span>
+    <span class="fw-bold"> Department : {{showData.department}} </span>
+    <div class="d-flex justify-content-end">
+
+      <button  class="btn btn-info m-1" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onEdit()">Edit</button>
     </div>
 
-    <button type="submit"  class="btn btn-primary">Submit</button>
-  </form>
+  </div>
+
+
+
+
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="row g-3 form_1" [formGroup]="formValue" >
+            <div class="col-md-6">
+              <label for="first_name" class="form-label">Employee Name</label>
+              <input type="text"  class="form-control" id="employeeName" formControlName="employeeName" required>
+            </div>
+            <div class="col-md-6">
+              <label for="last_name"  class="form-label">Employee ID</label>
+              <input type="text"  class="form-control" id="employeeID" formControlName="employeeID" >
+            </div>
+            <div class="col-md-6">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" formControlName="email" required>
+            </div>
+            <div class="col-md-6">
+              <label for="password" class="form-label">Password</label>
+              <div class="form-group row">
+                <div class="col-sm-12">
+                  <div class="input-group mb-3">
+                  <input
+                   [type]="show ? 'text' : 'password'" type="text" class="form-control" formControlName="password" placeholder="Enter password"
+                   />
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary"(click)="password()" type="button" id="button-addon2">Show</button>
+                  </div>
+                </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="contact_number" class="form-label">Department</label>
+              <input type="text" class="form-control" id="department" formControlName="department" required>
+            </div>
+
+            <div >
+              <button type="button" id="closeModel" class="btn btn-secondary  m-2" data-bs-dismiss="modal">Close</button>
+              <button type="button"   [disabled]="!formValue.valid" (click)="updateEmployeDetails()" class="btn btn-primary">Update</button>
+            </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

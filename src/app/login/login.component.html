@@ -9,24 +9,26 @@
 
 <!-- Employee Form -->
 <div class="container" *ngIf = "showEmplyeeForm">
-  <form>
+
+   <form  #lgForm="ngForm" (ngSubmit)="loginSubmit(lgForm.value)">
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Employee ID</label>
-      <input type="email" placeholder="Ex. V5001" class="form-control" name="email" >
+      <input type="text"  name="employeeId" ngModel placeholder="Ex. V5001" class="form-control" name="employeeId" >
     </div>
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control" name="email" >
+      <input type="email"  name="email" ngModel class="form-control" name="email" >
     </div>
     <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" name="password"  >
+      <input type="text"  name="password" ngModel class="form-control" name="password"  >
     </div>
-
-    <button type="submit"  class="btn btn-primary">Submit</button>
+    <button type="submit"  class="btn   btn-primary">Submit</button>
     <button type="button" class="btn btn-link" (click)="home()"  >Not Employee Back to Home!</button>
   </form>
+
 </div>
+
 
 <!-- Admim Form -->
 

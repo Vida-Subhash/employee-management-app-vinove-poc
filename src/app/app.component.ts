@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,11 +8,16 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'employee-management-app';
+  showLogoutBtn!: boolean;
+  // @Input
   constructor(
     private router: Router
   ) {}
 
-
+  logout() {
+    console.log("Log Out Sucess");
+    this.router.navigateByUrl('login');
+  }
 
 
 }
