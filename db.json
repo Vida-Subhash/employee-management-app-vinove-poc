@@ -1,0 +1,24 @@
+{
+  "posts": [
+    {
+      "employeeName": "subhash Ramshetty",
+      "employeeID": "V5771",
+      "email": "subhash.ramshetti9768@gmail.com",
+      "department": "Service",
+      "password": "User1234",
+      "id": 1
+    },
+    {
+      "employeeName": "gfdgf",
+      "employeeID": "grt454",
+      "email": "gfgfg",
+      "department": "gfgfdgfdg",
+      "password": "gfdgfdgfdg",
+      "id": 2
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}

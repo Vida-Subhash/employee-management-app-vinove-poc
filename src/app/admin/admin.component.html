@@ -1,5 +1,79 @@
 
-<p>Admin</p>
+    <div class="d-flex justify-content-end p-3" >
+      <button type="submit" (click)=" addEmploye()" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Employee</button>
+    </div>
+<table class="table mt-3">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Employee ID</th>
+      <th scope="col">Employee Name</th>
+      <th scope="col">Department</th>
+      <th scope="col">Email</th>
+      <th scope="col">Password</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let emp of empolyeData  let i = index" (click)="ClickedRow(i)" [class.active]="i == HighlightRow">
+      <td>{{emp.id}}</td>
+      <td>{{emp.employeeID}} </td>
+      <td>{{emp.employeeName}}</td>
+      <td>{{emp.department}} </td>
+      <td>{{emp.email}} </td>
+      <td>{{emp.password}} </td>
+      <td >
+        <button  class="btn btn-info mx-3" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onEdit(emp)">Edit</button>
+        <button class="btn btn-danger mx-3" type="button" (click)="deleteEmp(emp)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!--Add and Edit Employee Details  Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Employee Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3 form_1" [formGroup]="formValue" >
+          <div class="col-md-6">
+            <label for="first_name" class="form-label">Employee Name</label>
+            <input type="text"  class="form-control" id="employeeName" formControlName="employeeName" required>
+          </div>
+          <div class="col-md-6">
+            <label for="last_name" class="form-label">Employee ID</label>
+            <input type="text" class="form-control" id="employeeID" formControlName="employeeID" required>
+          </div>
+          <div class="col-md-6">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" formControlName="email" required>
+          </div>
+          <div class="col-md-6">
+            <label for="contact_number" class="form-label">Department</label>
+            <input type="text" class="form-control" id="department" formControlName="department" required>
+          </div>
+          <div class="col-md-6">
+            <label for="dob" class="form-label">Password</label>
+            <!-- <input class="datepicker" data-date-format="mm/dd/yyyy"> -->
+            <input type="text" class="form-control" id="password" formControlName="password" required>
+          </div>
+          <div >
+            <button type="button" id="closeModel" class="btn btn-secondary  m-2" data-bs-dismiss="modal">Close</button>
+            <button type="button" *ngIf= "showAdd"  [disabled]="!formValue.valid" (click)="postEmployeDetails()" class="btn btn-primary">Add</button>
+            <button type="button" *ngIf= "showUpdate"  [disabled]="!formValue.valid" (click)="updateEmployeDetails()" class="btn btn-primary">Update</button>
+          </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 
 

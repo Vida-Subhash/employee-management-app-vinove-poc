@@ -2,3 +2,9 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.table tr.active td {
+  cursor: pointer;
+  background-color:#c5f8c5 !important;
+  color: rgb(8, 8, 8);
+}
