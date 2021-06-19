@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EmployeeService } from '../shared/employee.service';
 
@@ -15,21 +15,37 @@ export class LoginComponent implements OnInit {
   showEmplyeeForm!: boolean;
   hideButton: boolean = false;
   data!: any ;
+  employeeForm!: FormGroup;
+  adminForm!: FormGroup;
+  show!: boolean;
   constructor(
     private router: Router,
-    private empService: EmployeeService
-  ) { }
+    private empService: EmployeeService,
+    private formbuilder: FormBuilder
+  ) {this.show = false; }
 
   ngOnInit(): void {
+    // Employee Form Validations
+    this.employeeForm = this.formbuilder.group({
+      employeeId: [ '', Validators.required],
+      email: ['', [Validators.email, Validators.required]],
+      password: ['', Validators.required],
+    });
+
+      // Admin Login Form Validations
+      this.adminForm = this.formbuilder.group({
+        email: ['admin@gmail.com', [Validators.email, Validators.required]],
+        password: ['admin123', Validators.required],
+      });
+
     this.empService.getEmploye().subscribe( res => {
       // console.log(res);
        this.data =res;
       console.log(this.data);
-
-    })
+    });
   }
-  login() {
-    if(this.email == "admin@gmail.com" && this.password == "admin123") {
+  login(value:any) {
+    if(this.email == value.email && this.password == value.password) {
       console.log("Admin login Success");
       this.router.navigateByUrl('admin');
     } else {
@@ -77,5 +93,8 @@ loginSubmit(value:any){
         console.log("error");
       }
   }
+}
+showPassword() {
+  this.show = !this.show;
 }
 }

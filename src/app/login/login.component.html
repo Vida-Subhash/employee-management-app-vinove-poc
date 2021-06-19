@@ -10,21 +10,48 @@
 <!-- Employee Form -->
 <div class="container" *ngIf = "showEmplyeeForm">
 
-   <form  #lgForm="ngForm" (ngSubmit)="loginSubmit(lgForm.value)">
+   <form  #lgForm="ngForm"   [formGroup]="employeeForm">
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Employee ID</label>
-      <input type="text"  name="employeeId" ngModel placeholder="Ex. V5001" class="form-control" name="employeeId" >
+      <input type="text"  name="employeeId"  placeholder="Ex. V5001" class="form-control" formControlName = "employeeId" name="employeeId" >
+        <!-- Error Message -->
+         <!-- <div *ngIf="employeeId.invalid && (name.dirty || name.touched)"
+    class="alert alert-danger">
+
+  <div *ngIf="name.errors?.required">
+    Name is required.
+  </div>
+  <div *ngIf="name.errors?.minlength">
+    Name must be at least 4 characters long.
+  </div>
+  <div *ngIf="name.errors?.forbiddenName">
+    Name cannot be Bob.
+  </div>
+</div>  -->
     </div>
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email"  name="email" ngModel class="form-control" name="email" >
+      <input type="email"  name="email"  class="form-control" formControlName= "email" name="email" placeholder="Enter Email">
     </div>
     <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="text"  name="password" ngModel class="form-control" name="password"  >
+      <div class="col-md-12">
+        <label for="password" class="form-label">Password</label>
+        <div class="form-group row">
+          <div class="col-sm-12">
+            <div class="input-group mb-3">
+            <input [type]="show ? 'text' : 'password'" type="text" class="form-control" placeholder="Enter Password" formControlName="password"/>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary"(click)="showPassword()" type="button" id="button-addon2">Show</button>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <!-- <label for="exampleInputPassword1" class="form-label">Password</label> -->
+      <!-- <input type="text"  name="password"  class="form-control" formControlName= "password" name="password"  > -->
     </div>
-    <button type="submit"  class="btn   btn-primary">Submit</button>
-    <button type="button" class="btn btn-link" (click)="home()"  >Not Employee Back to Home!</button>
+    <button type="button"  class="btn   btn-primary" [disabled]="!employeeForm.valid" (click)="loginSubmit(lgForm.value)">Submit</button>
+    <button type="button" class="btn btn-link mx-3" (click)="home()"  >Not Employee Back to Home!</button>
   </form>
 
 </div>
@@ -33,18 +60,31 @@
 <!-- Admim Form -->
 
 <div  class="container" *ngIf ="showAdminForm">
-  <form>
+  <form #adminFormLogin="ngForm"  [formGroup]= "adminForm">
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control" name="email" [(ngModel)]= "email" value="admin@gmail.com">
+      <input type="email" class="form-control" name="email" formControlName= "email"  value="admin@gmail.com">
     </div>
     <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" name="password" [(ngModel)]="password" value="admin123" >
+      <div class="col-md-12">
+        <label for="password" class="form-label">Password</label>
+        <div class="form-group row">
+          <div class="col-sm-12">
+            <div class="input-group mb-3">
+            <input [type]="show ? 'text' : 'password'" type="text" class="form-control" placeholder="Enter Password" formControlName="password"/>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary"(click)="showPassword()" type="button" id="button-addon2">Show</button>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <!-- <label for="exampleInputPassword1" class="form-label">Password</label> -->
+      <!-- <input type="password" class="form-control" name="password" formControlName= "password"  value="admin123" > -->
     </div>
 
-    <button type="button" (click)=" login()" class="btn btn-primary">Submit</button>
-    <button type="button" class="btn btn-link" (click)="home()"  >Not Admin Back to Home!</button>
+    <button type="button" [disabled]= "!adminForm.valid" (click)="login(adminFormLogin.value)" class="btn btn-primary">Submit</button>
+    <button type="button" class="btn btn-link mx-3" (click)="home()"  >Not Admin Back to Home!</button>
   </form>
 </div>
 <!-- <div class="container">
