@@ -23,6 +23,14 @@
       "department": "HR",
       "password": "raju123",
       "id": 3
+    },
+    {
+      "id": 4,
+      "employeeName": "Aman D",
+      "employeeID": "V4543",
+      "email": "aman@gmail.com",
+      "department": "IT",
+      "password": "aman123"
     }
   ],
   "comments": [],

@@ -2,6 +2,7 @@ import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { EmployeeService } from '../shared/employee.service';
 import { Employee } from './admin.modal';
 
@@ -20,6 +21,7 @@ export class AdminComponent implements OnInit {
   showEmpolyeData : any = {};
   showAdd!: boolean;
   showUpdate!: boolean;
+  showLogoutBtn: boolean = true;
   //
   HighlightRow! : Number;
   ClickedRow:any;
@@ -27,7 +29,8 @@ export class AdminComponent implements OnInit {
     private router: Router,
     //
     private formbuilder: FormBuilder,
-    private empService: EmployeeService
+    private empService: EmployeeService,
+    private toastr: ToastrService
   ) {
     //
     this.ClickedRow = function(index: Number){
@@ -65,11 +68,12 @@ this.empService.postEmploye(this.employModel).subscribe(res => {
   this.formValue.reset();
   let close = document.getElementById("closeModel");
   close?.click();
-  alert("added");
+  this.toastr.success("Employee Added Successfully.")
+  // alert("added");
   this.getAllEmploy();
 },
 err => {
-  alert("Error...!");
+  this.toastr.error("Something Went Wrong.");
 },
 )}
 
@@ -81,7 +85,8 @@ this.empService.getEmploye().subscribe(res => {
 
 deleteEmp(emp: any) {
 this.empService.deleteEmploye(emp.id).subscribe(res => {
-alert("Employee deleted");
+  this.toastr.error("Employee Deleted");
+// alert("Employee deleted");
 this.getAllEmploy();
 });
 }
@@ -104,7 +109,8 @@ this.employModel.department = this.formValue.value.department;
 this.employModel.password = this.formValue.value.password;
 this.empService.updateEmploye(this.employModel, this.employModel.id)
 .subscribe(res => {
-  alert("Employee Updated");
+  // alert("Employee Updated");
+  this.toastr.success("Employee Updated Successfully.")
   this.formValue.reset();
   let close = document.getElementById("closeModel");
   close?.click();
@@ -117,15 +123,11 @@ this.empService.showEmploye(emp.id).subscribe(res => {
    this.showEmpolyeData = res;
   });
 }
-//
-  login() {
-    if(this.email == "admin@gmail.com" && this.password == "admin123") {
-      console.log("Admin login Success");
-      this.router.navigateByUrl('admin');
-    } else {
-      alert("Invalid Username and Password..!");
-    }
-  }
+logout() {
+  // console.log("Log Out Sucess");
+  this.router.navigateByUrl('login');
+  this.toastr.info("Logout Successfully.");
+}
 
   buttonClick() {
     console.log("button clicked")

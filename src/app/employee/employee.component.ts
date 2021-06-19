@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import {  ToastrService } from 'ngx-toastr';
 import { EmployeeService } from '../shared/employee.service';
 
 @Component({
@@ -24,12 +25,14 @@ employee : {
 }
 showData: any = {};
 formValue!: FormGroup;
-
+showLogoutBtn: boolean = true;
 show!: boolean;
   constructor(
     private empService: EmployeeService,
     private route: ActivatedRoute,
+    private router: Router,
     private formbuilder: FormBuilder,
+    private toastr: ToastrService
     ) {  this.show = false;}
 
   ngOnInit(): void {
@@ -74,7 +77,8 @@ show!: boolean;
       // this.showData.password = this.formValue.value.password;
       this.empService.updateEmploye(this.showData, this.showData.id)
       .subscribe(res => {
-        alert("Employee Updated");
+        // alert("Employee Updated");
+        this.toastr.success("Details Updated Successfully.");
         this.formValue.reset();
         let close = document.getElementById("closeModel");
         close?.click();
@@ -83,6 +87,12 @@ show!: boolean;
 
       password() {
         this.show = !this.show;
+    }
+    logout() {
+      // console.log("Log Out Sucess");
+      this.router.navigateByUrl('login');
+      this.toastr.info("Logout Successfully.");
+
     }
   }
 

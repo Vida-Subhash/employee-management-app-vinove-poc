@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { EmployeeService } from '../shared/employee.service';
 
 @Component({
@@ -18,10 +19,12 @@ export class LoginComponent implements OnInit {
   employeeForm!: FormGroup;
   adminForm!: FormGroup;
   show!: boolean;
+  showLogoutBtn: boolean = false;
   constructor(
     private router: Router,
     private empService: EmployeeService,
-    private formbuilder: FormBuilder
+    private formbuilder: FormBuilder,
+    private toastr: ToastrService
   ) {this.show = false; }
 
   ngOnInit(): void {
@@ -48,8 +51,10 @@ export class LoginComponent implements OnInit {
     if(this.email == value.email && this.password == value.password) {
       console.log("Admin login Success");
       this.router.navigateByUrl('admin');
+      this.toastr.success('Login Success');
     } else {
-      alert("Invalid Username and Password..!");
+      // this.toastr.warning('Invalid Username and Password..!');
+      // alert("Invalid Username and Password..!");
     }
   }
 
@@ -79,22 +84,28 @@ loginSubmit(value:any){
   for(let i=0 ; i< this.data.length; i++)
   {
     console.log("User Found" , this.data[i], value);
-    console.log(this.data[i].email == value.email);
-    console.log(this.data[i].password == value.password);
-    console.log(this.data[i].employeeID == value.employeeId);
+    // console.log(this.data[i].email == value.email);
+    // console.log(this.data[i].password == value.password);
+    // console.log(this.data[i].employeeID == value.employeeId);
       if (this.data[i].email == value.email && this.data[i].password == value.password
          && this.data[i].employeeID == value.employeeId)
       {
           console.log(this.data[i].employeeID);
+          this.toastr.success('Login Success');
           this.router.navigate([`employee/${this.data[i].id}`]);
+          // localStorage.setItem('Button', "true");
+          // console.log(localStorage.getItem('Button'));
           // this.router.navigateByUrl("employee", this.data[i].employeeId);
       } else {
         // alert("Invalid Details..")
-        console.log("error");
+        // this.toastr.warning('Invalid Login Details!');
+        // console.log("error");
       }
   }
 }
 showPassword() {
   this.show = !this.show;
 }
+
+
 }

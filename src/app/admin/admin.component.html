@@ -1,4 +1,11 @@
-
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Employee Management</span>
+    <div class="d-flex justify-content-end " >
+      <button *ngIf="showLogoutBtn" type="submit" (click)="logout()"  class="btn btn-warning btn-sm mx-4" >Log Out</button>
+    </div>
+  </div>
+</nav>
 
 <table class="table mt-3">
   <thead>
@@ -9,7 +16,7 @@
       <th scope="col">Department</th>
       <th scope="col">Email</th>
       <th scope="col">Password</th>
-      <th scope="col">Action</th>
+      <th class="ps-5" scope="col">Action</th>
     </tr>
   </thead>
   <tbody>

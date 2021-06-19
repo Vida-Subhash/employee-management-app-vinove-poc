@@ -1,16 +1,28 @@
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Employee Management</span>
+    <div class="d-flex justify-content-end " >
+      <button *ngIf="showLogoutBtn" type="submit"  class="btn btn-warning btn-sm mx-4" >Log Out</button>
+    </div>
+  </div>
+</nav>
 
-
-<div class="container m-3" *ngIf= "!hideButton">
-  <div class="d-grid gap-2 col-6 mx-auto">
-    <button class="btn btn-outline-primary m-3"  *ngIf ="!showAdminForm"  (click)="adminLogin()" type="button" >Admin Login</button>
-    <button class="btn btn-outline-warning m-3" type="button" *ngIf ="!showEmplyeeForm" (click)="employeLogin()" >Employee Login</button>
+<div class="container m-3 p-5 d-flex  justify-content-center" *ngIf= "!hideButton">
+  <div class="card rounded" style="width: 45rem;">
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button class="btn btn-outline-primary m-3"  *ngIf ="!showAdminForm"  (click)="adminLogin()" type="button" >Admin Login</button>
+      <button class="btn btn-outline-warning m-3" type="button" *ngIf ="!showEmplyeeForm" (click)="employeLogin()" >Employee Login</button>
+    </div>
   </div>
 </div>
 
 <!-- Employee Form -->
-<div class="container" *ngIf = "showEmplyeeForm">
-
-   <form  #lgForm="ngForm"   [formGroup]="employeeForm">
+<div class="container p-5"  *ngIf = "showEmplyeeForm">
+<div class="card rounded " style="background-color: hsla(180, 8%, 88%, 0.877);">
+  <div>
+    <img style="height: 150px;" src="../../assets/Emplooye login.jpg" class="img p-2 rounded mx-auto d-block" alt="employee-image">
+  </div>
+   <form  class="m-3" #lgForm="ngForm"   [formGroup]="employeeForm">
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Employee ID</label>
       <input type="text"  name="employeeId"  placeholder="Ex. V5001" class="form-control" formControlName = "employeeId" name="employeeId" >
@@ -47,20 +59,22 @@
           </div>
         </div>
       </div>
-      <!-- <label for="exampleInputPassword1" class="form-label">Password</label> -->
-      <!-- <input type="text"  name="password"  class="form-control" formControlName= "password" name="password"  > -->
     </div>
     <button type="button"  class="btn   btn-primary" [disabled]="!employeeForm.valid" (click)="loginSubmit(lgForm.value)">Submit</button>
     <button type="button" class="btn btn-link mx-3" (click)="home()"  >Not Employee Back to Home!</button>
   </form>
-
+</div>
 </div>
 
 
 <!-- Admim Form -->
 
-<div  class="container" *ngIf ="showAdminForm">
-  <form #adminFormLogin="ngForm"  [formGroup]= "adminForm">
+<div  class="container p-5" *ngIf ="showAdminForm">
+  <div class="card rounded " style="background-color: hsla(180, 8%, 88%, 0.877);">
+    <div>
+      <img style="height: 150px;" src="../../assets/Emplooye login.jpg" class="img p-2 rounded mx-auto d-block" alt="employee-image">
+    </div>
+  <form #adminFormLogin="ngForm" class="m-3"  [formGroup]= "adminForm">
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Email address</label>
       <input type="email" class="form-control" name="email" formControlName= "email"  value="admin@gmail.com">
@@ -79,26 +93,10 @@
           </div>
         </div>
       </div>
-      <!-- <label for="exampleInputPassword1" class="form-label">Password</label> -->
-      <!-- <input type="password" class="form-control" name="password" formControlName= "password"  value="admin123" > -->
     </div>
 
     <button type="button" [disabled]= "!adminForm.valid" (click)="login(adminFormLogin.value)" class="btn btn-primary">Submit</button>
     <button type="button" class="btn btn-link mx-3" (click)="home()"  >Not Admin Back to Home!</button>
   </form>
+  </div>
 </div>
-<!-- <div class="container">
-  <form>
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control" name="email" [(ngModel)]= "email" value="admin@gmail.com">
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" name="password" [(ngModel)]="password" value="admin123" >
-    </div>
-
-    <button type="submit" (click)=" login()" class="btn btn-primary">Submit</button>
-  </form>
-</div> -->
-
