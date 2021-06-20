@@ -1,4 +1,10 @@
 {
+  "admin": [
+    {
+      "email": "admin@gmail.com",
+      "password": "admin123"
+    }
+  ],
   "posts": [
     {
       "employeeName": "subhash Ramshetty",
@@ -23,14 +29,6 @@
       "department": "HR",
       "password": "raju123",
       "id": 3
-    },
-    {
-      "id": 4,
-      "employeeName": "Aman D",
-      "employeeID": "V4543",
-      "email": "aman@gmail.com",
-      "department": "IT",
-      "password": "aman123"
     }
   ],
   "comments": [],

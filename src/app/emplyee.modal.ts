@@ -1,5 +1,6 @@
-export class employeeDetails {
-  empid!: string;
+export class Employee {
+  id!: number;
+  employeeID!: string;
   employeeName!: string;
   department!: string;
   email!: string;

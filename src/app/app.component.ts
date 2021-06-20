@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { EmployeeService } from './shared/employee.service';
 
 @Component({
   selector: 'app-root',
@@ -11,15 +13,21 @@ export class AppComponent implements OnInit {
   showLogoutBtn!: string;
   // @Input
   constructor(
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService,
+    private empService: EmployeeService
   ) {}
 ngOnInit() {
-  // console.log(  localStorage.getItem('Button'));
-}
-  logout() {
-    console.log("Log Out Sucess");
-    this.router.navigateByUrl('login');
-  }
+     this.empService.loggedIn();
+     // console.log(  localStorage.getItem('Button'));
+     console.log( localStorage.getItem('token'));
+    }
+    logout() {
+      // console.log("Log Out Sucess");
+      this.router.navigateByUrl('login');
+      this.toastr.info("Logout Successfully.");
+      localStorage.removeItem('token');
+    }
 
 
 }

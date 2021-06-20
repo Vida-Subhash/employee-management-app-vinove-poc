@@ -7,9 +7,17 @@ import {map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class EmployeeService {
-
+  // LoggedIn = false;
   constructor(private http: HttpClient) { }
-
+  // isAuthenticated() {
+  //   const promise = new Promise(
+  //     (resolve, reject) => {
+  //       setTimeout( () => {
+  //         resolve(this.LoggedIn)
+  //       }, 500);
+  //     });
+  //     return promise;
+  // }
   postEmploye(data: any) {
     return this.http.post<any>("http://localhost:3000/posts", data)
     .pipe(map((res:any ) => {
@@ -17,6 +25,7 @@ export class EmployeeService {
     }));
   }
   getEmploye() {
+    // this.LoggedIn = true;
     return this.http.get<any>("http://localhost:3000/posts")
     .pipe(map((res:any ) => {
       return res;
@@ -42,6 +51,12 @@ export class EmployeeService {
     .pipe(map((res:any ) => {
       return res;
     }));
+  }
+employeeLogin(email:string, password:string, employeeId:string) {
+
+}
+  loggedIn() {
+    return !!localStorage.getItem('token'); // to get Boolean Value use !!
   }
 
 

@@ -3,8 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Employee } from '../emplyee.modal';
 import { EmployeeService } from '../shared/employee.service';
-import { Employee } from './admin.modal';
+
 
 @Component({
   selector: 'app-admin',
@@ -21,7 +22,7 @@ export class AdminComponent implements OnInit {
   showEmpolyeData : any = {};
   showAdd!: boolean;
   showUpdate!: boolean;
-  showLogoutBtn: boolean = true;
+  showLogoutBtn!: boolean;
   //
   HighlightRow! : Number;
   ClickedRow:any;
@@ -49,6 +50,9 @@ export class AdminComponent implements OnInit {
       password: [''],
     });
     this.getAllEmploy();
+    // let a = localStorage.getItem('token');
+    this.showLogoutBtn = !!localStorage.getItem('token');
+  //  console.log("A is printed", a);
   }
 //
 addEmploye() {
@@ -127,6 +131,7 @@ logout() {
   // console.log("Log Out Sucess");
   this.router.navigateByUrl('login');
   this.toastr.info("Logout Successfully.");
+  localStorage.removeItem('token');
 }
 
   buttonClick() {

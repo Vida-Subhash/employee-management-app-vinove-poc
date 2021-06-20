@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
   employeeForm!: FormGroup;
   adminForm!: FormGroup;
   show!: boolean;
-  showLogoutBtn: boolean = false;
   constructor(
     private router: Router,
     private empService: EmployeeService,
@@ -52,24 +51,24 @@ export class LoginComponent implements OnInit {
       console.log("Admin login Success");
       this.router.navigateByUrl('admin');
       this.toastr.success('Login Success');
+      localStorage.setItem('token', "true");
     } else {
-      // this.toastr.warning('Invalid Username and Password..!');
+      this.toastr.warning('Invalid Username and Password..!');
       // alert("Invalid Username and Password..!");
     }
+
   }
 
   adminLogin() {
     this.showAdminForm = true;
     this.showEmplyeeForm = false;
     this.hideButton = true;
-    // this.router.navigateByUrl('admin');
 }
 
 employeLogin() {
   this.showEmplyeeForm = true;
   this.showAdminForm = false;
   this.hideButton = true;
-  // this.router.navigateByUrl('employee');
 }
 
 home() {
@@ -78,26 +77,20 @@ home() {
   this.showAdminForm = false;
 }
 loginSubmit(value:any){
-  // console.log(value.email);
-  // console.log(value.password);
-  // console.log(value.employeeId);
   for(let i=0 ; i< this.data.length; i++)
   {
-    console.log("User Found" , this.data[i], value);
-    // console.log(this.data[i].email == value.email);
-    // console.log(this.data[i].password == value.password);
-    // console.log(this.data[i].employeeID == value.employeeId);
+    // console.log("User Found" , this.data[i], value);
       if (this.data[i].email == value.email && this.data[i].password == value.password
          && this.data[i].employeeID == value.employeeId)
       {
           console.log(this.data[i].employeeID);
           this.toastr.success('Login Success');
           this.router.navigate([`employee/${this.data[i].id}`]);
-          // localStorage.setItem('Button', "true");
+          localStorage.setItem('token', "true");
           // console.log(localStorage.getItem('Button'));
           // this.router.navigateByUrl("employee", this.data[i].employeeId);
       } else {
-        // alert("Invalid Details..")
+        alert("Invalid Details..")
         // this.toastr.warning('Invalid Login Details!');
         // console.log("error");
       }

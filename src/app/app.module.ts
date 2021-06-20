@@ -12,7 +12,9 @@ import { LoginModule } from './login/login.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
-// import { MaterialModule } from './material/material.module';
+import { EmployeeService } from './shared/employee.service';
+import { AuthGuard } from './shared/auth.guard.service';
+
 
 
 @NgModule({
@@ -27,14 +29,14 @@ import { ToastrModule } from 'ngx-toastr';
     LoginModule,
     AdminModule,
     EmployeeModule,
-    ToastrModule.forRoot({
-                            timeOut: 3000,
-                            preventDuplicates: true,
-                          }),
-    // MaterialModule,
+    ToastrModule.forRoot(
+      {
+       timeOut: 3000,
+       preventDuplicates: true,
+      }),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [EmployeeService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

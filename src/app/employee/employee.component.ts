@@ -41,9 +41,8 @@ show!: boolean;
       console.log(res);
       // this.employee = res;
       this.showData = res;
-
-    })
-
+ })
+ this.showLogoutBtn = !!localStorage.getItem('token');
 
       // this.empService.showEmploye(1).subscribe( res => {
       //   this.showData = res;
@@ -92,7 +91,7 @@ show!: boolean;
       // console.log("Log Out Sucess");
       this.router.navigateByUrl('login');
       this.toastr.info("Logout Successfully.");
-
+      localStorage.removeItem('token');
     }
   }
 
