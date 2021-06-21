@@ -10,18 +10,21 @@ import { EmployeeService } from '../shared/employee.service';
   styleUrls: ['./employee.component.scss']
 })
 export class EmployeeComponent implements OnInit {
+  adminEdit!: boolean;
 employee : {
   id: number,
   empid: string,
   employeeName: string,
   department: string,
   email: string,
+  password: string
 
 } = {id: 0,
   empid: '',
   employeeName: '',
   department: '',
   email: '',
+  password: ''
 }
 showData: any = {};
 formValue!: FormGroup;
@@ -52,18 +55,20 @@ show!: boolean;
       this.formValue = this.formbuilder.group({
         employeeName : ['', Validators.required],
         employeeID: ['', Validators.required],
-        // email: ['', [Validators.email, Validators.required]],
+        email: ['', [Validators.email, Validators.required]],
         department: ['', Validators.required],
-        // password: ['', Validators.required],
+        password: ['', Validators.required],
       });
+
+      this.adminEdit = !!localStorage.getItem('admin');
     }
 
     onEdit( ) {
       this.formValue.controls['employeeName'].setValue(this.showData.employeeName);
       this.formValue.controls['employeeID'].setValue(this.showData.employeeID);
       this.formValue.controls['department'].setValue(this.showData.department);
-      // this.formValue.controls['email'].setValue(this.showData.email);
-      // this.formValue.controls['password'].setValue(this.showData.password);
+      this.formValue.controls['email'].setValue(this.showData.email);
+      this.formValue.controls['password'].setValue(this.showData.password);
       }
 
 
@@ -72,8 +77,8 @@ show!: boolean;
       this.showData.employeeName = this.formValue.value.employeeName;
       this.showData.employeeID = this.formValue.value.employeeID;
       this.showData.department = this.formValue.value.department;
-      // this.showData.email = this.formValue.value.email;
-      // this.showData.password = this.formValue.value.password;
+      this.showData.email = this.formValue.value.email;
+      this.showData.password = this.formValue.value.password;
       this.empService.updateEmploye(this.showData, this.showData.id)
       .subscribe(res => {
         // alert("Employee Updated");
@@ -92,6 +97,9 @@ show!: boolean;
       this.router.navigateByUrl('login');
       this.toastr.info("Logout Successfully.");
       localStorage.removeItem('token');
+    }
+    adminDashboard() {
+      this.router.navigateByUrl('admin');
     }
   }
 

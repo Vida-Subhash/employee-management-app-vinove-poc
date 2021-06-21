@@ -11,11 +11,13 @@
   <div class="card p-2 rounded" style="width: 25rem;">
     <span class="fw-bold">ID: {{showData.employeeID}} </span>
     <span class="fw-bold">Emspanloyee Name : {{showData.employeeName}} </span>
-    <!-- <span class="fw-bold">Email : {{showData.email}} </span> -->
     <span class="fw-bold"> Department : {{showData.department}} </span>
-    <div class="d-flex justify-content-end">
+    <span  *ngIf="adminEdit" class="fw-bold">Email : {{showData.email}} </span>
+    <span  *ngIf="adminEdit" class="fw-bold">Password: {{showData.password}} </span>
+    <div class="d-flex p-3 justify-content-end">
 
-      <button  class="btn btn-info m-1" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onEdit()">Edit</button>
+      <button  class="btn btn-info m-2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onEdit()">Edit</button>
+      <button *ngIf="adminEdit" class="btn btn-warning m-2" type="button"  (click)="adminDashboard()">Back to Admin Dashboard</button>
     </div>
 
   </div>
@@ -42,11 +44,11 @@
               <label for="last_name"  class="form-label">Employee ID</label>
               <input type="text"  class="form-control" id="employeeID" formControlName="employeeID" >
             </div>
-            <!-- <div class="col-md-6">
+            <div  *ngIf="adminEdit" class="col-md-6">
               <label for="email" class="form-label">Email</label>
               <input type="email" class="form-control" id="email" formControlName="email" required>
-            </div> -->
-            <!-- <div class="col-md-6">
+            </div>
+             <div   *ngIf="adminEdit" class="col-md-6">
               <label for="password" class="form-label">Password</label>
               <div class="form-group row">
                 <div class="col-sm-12">
@@ -61,7 +63,7 @@
 
                 </div>
               </div>
-            </div> -->
+            </div>
 
             <div class="col-md-6">
               <label for="contact_number" class="form-label">Department</label>

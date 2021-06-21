@@ -22,6 +22,7 @@ ngOnInit() {
      // console.log(  localStorage.getItem('Button'));
      console.log( localStorage.getItem('token'));
      localStorage.removeItem('token');
+     localStorage.removeItem('admin');
     }
     logout() {
       // console.log("Log Out Sucess");

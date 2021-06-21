@@ -33,11 +33,11 @@ export class AdminComponent implements OnInit {
     private empService: EmployeeService,
     private toastr: ToastrService
   ) {
-    //
-    this.ClickedRow = function(index: Number){
-      this.HighlightRow = index;
-      console.log(index);
-   };
+  //   //
+  //   this.ClickedRow = function(index: Number){
+  //     this.HighlightRow = index;
+  //     console.log(index);
+  //  };
   }
 
   ngOnInit(): void {
@@ -131,11 +131,15 @@ logout() {
   // console.log("Log Out Sucess");
   this.router.navigateByUrl('login');
   this.toastr.info("Logout Successfully.");
+  localStorage.removeItem('admin');
   localStorage.removeItem('token');
 }
 
-  buttonClick() {
-    console.log("button clicked")
+  buttonClick(id: any) {
+    this.router.navigate([`employee/${id}`]);
+    console.log("button clicked");
+    localStorage.setItem('admin', 'logged');
+    console.log(id);
   }
 
 

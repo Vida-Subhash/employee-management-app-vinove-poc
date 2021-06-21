@@ -7,20 +7,12 @@
   ],
   "posts": [
     {
+      "id": 1,
       "employeeName": "subhash Ramshetty",
       "employeeID": "V5771",
       "email": "subhash.ramshetti9768@gmail.com",
-      "department": "Service, HR",
-      "password": "User1234",
-      "id": 1
-    },
-    {
-      "employeeName": "Suresh",
-      "employeeID": "V5002",
-      "email": "suresh@gmail.com",
-      "department": "IT",
-      "password": "suresh123",
-      "id": 2
+      "department": "Service, Operations",
+      "password": "user123"
     },
     {
       "employeeName": "Raju Shaikh",
@@ -29,6 +21,14 @@
       "department": "HR",
       "password": "raju123",
       "id": 3
+    },
+    {
+      "employeeName": "suresh",
+      "employeeID": "v7001",
+      "email": "sureshbramshetti143@gmail.com",
+      "department": "IT",
+      "password": "raju123",
+      "id": 4
     }
   ],
   "comments": [],

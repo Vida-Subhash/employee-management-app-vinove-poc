@@ -20,7 +20,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let emp of empolyeData  let i = index" (click)="ClickedRow(i)" [class.active]="i == HighlightRow">
+    <tr *ngFor="let emp of empolyeData"   (click)="buttonClick(emp.id)">
       <td>{{emp.id}}</td>
       <td>{{emp.employeeID}} </td>
       <td>{{emp.employeeName}}</td>
