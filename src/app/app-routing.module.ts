@@ -2,10 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './shared/auth.guard.service';
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  },
   {
     path: 'login',
     component: LoginComponent
@@ -23,8 +29,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/login',
-    pathMatch: 'full',
+    component: ErrorPageComponent
   },
 ];
 

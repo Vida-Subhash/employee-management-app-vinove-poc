@@ -14,12 +14,14 @@ import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { EmployeeService } from './shared/employee.service';
 import { AuthGuard } from './shared/auth.guard.service';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,

@@ -53,14 +53,17 @@
             <div class="input-group mb-3">
             <input [type]="show ? 'text' : 'password'" type="text" class="form-control" placeholder="Enter Password" formControlName="password"/>
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary"(click)="showPassword()" type="button" id="button-addon2">Show</button>
+              <button class="btn btn-outline-secondary"(click)="showPassword()" type="button" id="button-addon2">Show
+
+              </button>
             </div>
           </div>
           </div>
         </div>
       </div>
     </div>
-    <button type="button"  class="btn   btn-primary" [disabled]="!employeeForm.valid" (click)="loginSubmit(lgForm.value)">Submit</button>
+    <button type="button"   class="btn   btn-primary" [disabled]="!employeeForm.valid" (click)="loginSubmit(lgForm.value)">Submit
+    </button>
     <button type="button" class="btn btn-link mx-3" (click)="home()"  >Not Employee Back to Home!</button>
   </form>
 </div>

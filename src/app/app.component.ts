@@ -10,7 +10,7 @@ import { EmployeeService } from './shared/employee.service';
 })
 export class AppComponent implements OnInit {
   title = 'employee-management-app';
-  showLogoutBtn!: string;
+  showLogoutBtn!: boolean;
   // @Input
   constructor(
     private router: Router,
@@ -21,6 +21,7 @@ ngOnInit() {
      this.empService.loggedIn();
      // console.log(  localStorage.getItem('Button'));
      console.log( localStorage.getItem('token'));
+     localStorage.removeItem('token');
     }
     logout() {
       // console.log("Log Out Sucess");

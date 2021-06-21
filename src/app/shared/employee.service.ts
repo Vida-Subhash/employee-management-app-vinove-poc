@@ -1,23 +1,15 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
+// import { BehaviorSubject, Subject } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
-  // LoggedIn = false;
+  //  loggedInd = new BehaviorSubject<boolean>(true);
   constructor(private http: HttpClient) { }
-  // isAuthenticated() {
-  //   const promise = new Promise(
-  //     (resolve, reject) => {
-  //       setTimeout( () => {
-  //         resolve(this.LoggedIn)
-  //       }, 500);
-  //     });
-  //     return promise;
-  // }
   postEmploye(data: any) {
     return this.http.post<any>("http://localhost:3000/posts", data)
     .pipe(map((res:any ) => {
@@ -56,7 +48,9 @@ employeeLogin(email:string, password:string, employeeId:string) {
 
 }
   loggedIn() {
+    // this.loggedInd.next(!!localStorage.getItem('token'));
     return !!localStorage.getItem('token'); // to get Boolean Value use !!
+
   }
 
 

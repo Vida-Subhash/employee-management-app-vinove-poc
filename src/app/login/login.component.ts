@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
     });
   }
   login(value:any) {
+
     if(this.email == value.email && this.password == value.password) {
       console.log("Admin login Success");
       this.router.navigateByUrl('admin');
@@ -90,11 +91,11 @@ loginSubmit(value:any){
           // console.log(localStorage.getItem('Button'));
           // this.router.navigateByUrl("employee", this.data[i].employeeId);
       } else {
-        alert("Invalid Details..")
-        // this.toastr.warning('Invalid Login Details!');
+        // alert("Invalid Details..")
         // console.log("error");
       }
-  }
+    }
+    // this.toastr.warning('Invalid Login Details!');
 }
 showPassword() {
   this.show = !this.show;
